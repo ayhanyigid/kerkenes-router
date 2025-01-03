@@ -6,9 +6,9 @@
     "router",
     "routing",
     "route",
-    "simple-php-router",
+    "kerkenes-router",
     "laravel",
-    "pecee",
+    "ayhanyigid",
     "php",
     "framework",
     "url-handling",
@@ -18,7 +18,7 @@
   ],
   "license": "MIT",
   "support": {
-    "source": "https://github.com/skipperbent/simple-php-router/issues"
+    "source": "https://github.com/ayhanyigid/kerkenes-router/issues"
   },
   "authors": [
     {
@@ -45,7 +45,7 @@
   },
   "autoload": {
     "psr-4": {
-      "KRouter\\": "src/KerkenesRouter/"
+      "KerkenesRouter\\": "src/KerkenesRouter/"
     }
   },
   "config": {
