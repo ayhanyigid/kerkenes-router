@@ -45,7 +45,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Pecee\\": "src/Pecee/"
+      "KRouter\\": "src/KerkenesRouter/"
     }
   },
   "config": {
