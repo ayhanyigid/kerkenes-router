@@ -12,7 +12,7 @@
         stopOnFailure="false">
     <testsuites>
         <testsuite name="SimpleRouter Test Suite">
-            <directory>tests/Pecee/SimpleRouter/</directory>
+            <directory>tests/Kerkenes/SimpleRouter/</directory>
         </testsuite>
     </testsuites>
     <filter>

@@ -88,7 +88,7 @@ class RouterGroupTest extends \PHPUnit\Framework\TestCase
             TestRouter::group(['namespace' => 'Service'], function () use (&$result) {
 
                 TestRouter::get('/test', function () use (&$result) {
-                    return \Pecee\SimpleRouter\SimpleRouter::router()->getRequest()->getLoadedRoute()->getNamespace();
+                    return \Kerkenes\SimpleRouter\SimpleRouter::router()->getRequest()->getLoadedRoute()->getNamespace();
                 });
 
             });
@@ -106,7 +106,7 @@ class RouterGroupTest extends \PHPUnit\Framework\TestCase
             TestRouter::group(['namespace' => '\Service'], function () use (&$result) {
 
                 TestRouter::get('/test', function () use (&$result) {
-                    return \Pecee\SimpleRouter\SimpleRouter::router()->getRequest()->getLoadedRoute()->getNamespace();
+                    return \Kerkenes\SimpleRouter\SimpleRouter::router()->getRequest()->getLoadedRoute()->getNamespace();
                 });
 
             });

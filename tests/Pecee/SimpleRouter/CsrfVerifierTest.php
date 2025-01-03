@@ -16,8 +16,8 @@ class CsrfVerifierTest extends \PHPUnit\Framework\TestCase
         TestRouter::router()->reset();
 
         $router = TestRouter::router();
-        $router->getRequest()->setMethod(\Pecee\Http\Request::REQUEST_TYPE_POST);
-        $router->getRequest()->setUrl(new \Pecee\Http\Url('/page'));
+        $router->getRequest()->setMethod(\Kerkenes\Http\Request::REQUEST_TYPE_POST);
+        $router->getRequest()->setUrl(new \Kerkenes\Http\Url('/page'));
         $csrf = new DummyCsrfVerifier();
         $csrf->setTokenProvider($tokenProvider);
 
@@ -29,15 +29,15 @@ class CsrfVerifierTest extends \PHPUnit\Framework\TestCase
 
     public function testTokenFail()
     {
-        $this->expectException(\Pecee\Http\Middleware\Exceptions\TokenMismatchException::class);
+        $this->expectException(\Kerkenes\Http\Middleware\Exceptions\TokenMismatchException::class);
 
         global $_POST;
 
         $tokenProvider = new SilentTokenProvider();
 
         $router = TestRouter::router();
-        $router->getRequest()->setMethod(\Pecee\Http\Request::REQUEST_TYPE_POST);
-        $router->getRequest()->setUrl(new \Pecee\Http\Url('/page'));
+        $router->getRequest()->setMethod(\Kerkenes\Http\Request::REQUEST_TYPE_POST);
+        $router->getRequest()->setUrl(new \Kerkenes\Http\Url('/page'));
         $csrf = new DummyCsrfVerifier();
         $csrf->setTokenProvider($tokenProvider);
 
@@ -50,16 +50,16 @@ class CsrfVerifierTest extends \PHPUnit\Framework\TestCase
         $csrf = new DummyCsrfVerifier();
         $request = $router->getRequest();
 
-        $request->setUrl(new \Pecee\Http\Url('/exclude-page'));
+        $request->setUrl(new \Kerkenes\Http\Url('/exclude-page'));
         $this->assertTrue($csrf->testSkip($router->getRequest()));
 
-        $request->setUrl(new \Pecee\Http\Url('/exclude-all/page'));
+        $request->setUrl(new \Kerkenes\Http\Url('/exclude-all/page'));
         $this->assertTrue($csrf->testSkip($router->getRequest()));
 
-        $request->setUrl(new \Pecee\Http\Url('/exclude-all/include-page'));
+        $request->setUrl(new \Kerkenes\Http\Url('/exclude-all/include-page'));
         $this->assertFalse($csrf->testSkip($router->getRequest()));
 
-        $request->setUrl(new \Pecee\Http\Url('/include-page'));
+        $request->setUrl(new \Kerkenes\Http\Url('/include-page'));
         $this->assertFalse($csrf->testSkip($router->getRequest()));
     }
 

@@ -74,7 +74,7 @@ class RouterRewriteTest extends \PHPUnit\Framework\TestCase
 
         try {
             TestRouter::debug('/admin/my-path-test', 'get');
-        } catch (\Pecee\SimpleRouter\Exceptions\NotFoundHttpException $e) {
+        } catch (\Kerkenes\SimpleRouter\Exceptions\NotFoundHttpException $e) {
 
         }
 
@@ -87,9 +87,9 @@ class RouterRewriteTest extends \PHPUnit\Framework\TestCase
 
     public function testRewriteExceptionMessage()
     {
-        $this->expectException(\Pecee\SimpleRouter\Exceptions\NotFoundHttpException::class);
+        $this->expectException(\Kerkenes\SimpleRouter\Exceptions\NotFoundHttpException::class);
 
-        TestRouter::error(function (\Pecee\Http\Request $request, \Exception $error) {
+        TestRouter::error(function (\Kerkenes\Http\Request $request, \Exception $error) {
 
             if (strtolower($request->getUrl()->getPath()) === '/my/test/') {
                 $request->setRewriteUrl('/another-non-existing');
@@ -156,7 +156,7 @@ class RouterRewriteTest extends \PHPUnit\Framework\TestCase
     {
 
         TestRouter::get('/match', function () {
-            TestRouter::request()->setRewriteRoute(new \Pecee\SimpleRouter\Route\RouteUrl('/match', function () {
+            TestRouter::request()->setRewriteRoute(new \Kerkenes\SimpleRouter\Route\RouteUrl('/match', function () {
                 return 'ok';
             }));
         });

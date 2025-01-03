@@ -8,7 +8,7 @@ class CustomMiddlewareTest extends \PHPUnit\Framework\TestCase
 
     public function testIpBlock() {
 
-        $this->expectException(\Pecee\SimpleRouter\Exceptions\HttpException::class);
+        $this->expectException(\Kerkenes\SimpleRouter\Exceptions\HttpException::class);
 
         global $_SERVER;
 

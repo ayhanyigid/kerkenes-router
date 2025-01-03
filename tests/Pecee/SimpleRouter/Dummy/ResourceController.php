@@ -1,5 +1,5 @@
 <?php
-class ResourceController implements \Pecee\Controllers\IResourceController
+class ResourceController implements \Kerkenes\Controllers\IResourceController
 {
 
     public function index() : ?string

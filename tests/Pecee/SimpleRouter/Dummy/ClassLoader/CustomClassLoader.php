@@ -1,6 +1,6 @@
 <?php
 
-class CustomClassLoader implements \Pecee\SimpleRouter\ClassLoader\IClassLoader
+class CustomClassLoader implements \Kerkenes\SimpleRouter\ClassLoader\IClassLoader
 {
     public function loadClass(string $class)
     {

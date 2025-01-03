@@ -1,6 +1,6 @@
 <?php
 
-class FindUrlBootManager implements \Pecee\SimpleRouter\IRouterBootManager
+class FindUrlBootManager implements \Kerkenes\SimpleRouter\IRouterBootManager
 {
     protected $result;
 
@@ -12,10 +12,10 @@ class FindUrlBootManager implements \Pecee\SimpleRouter\IRouterBootManager
     /**
      * Called when router loads it's routes
      *
-     * @param \Pecee\SimpleRouter\Router $router
-     * @param \Pecee\Http\Request $request
+     * @param \Kerkenes\SimpleRouter\Router $router
+     * @param \Kerkenes\Http\Request $request
      */
-    public function boot(\Pecee\SimpleRouter\Router $router, \Pecee\Http\Request $request): void
+    public function boot(\Kerkenes\SimpleRouter\Router $router, \Kerkenes\Http\Request $request): void
     {
         $contact = $router->findRoute('contact');
 

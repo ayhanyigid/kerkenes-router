@@ -283,7 +283,7 @@ class RouterUrlTest extends \PHPUnit\Framework\TestCase
 
         try {
             TestRouter::debugNoReset('/horses/');
-        } catch (\Pecee\SimpleRouter\Exceptions\ClassNotFoundHttpException $e) {
+        } catch (\Kerkenes\SimpleRouter\Exceptions\ClassNotFoundHttpException $e) {
             $class = $e->getClass();
         }
 
@@ -295,7 +295,7 @@ class RouterUrlTest extends \PHPUnit\Framework\TestCase
 
         try {
             TestRouter::debugNoReset('/horses/race');
-        } catch (\Pecee\SimpleRouter\Exceptions\ClassNotFoundHttpException $e) {
+        } catch (\Kerkenes\SimpleRouter\Exceptions\ClassNotFoundHttpException $e) {
             $class = $e->getClass();
         }
 

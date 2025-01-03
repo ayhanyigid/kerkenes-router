@@ -1,7 +1,7 @@
 <?php
 
-use Pecee\Http\Middleware\IMiddleware;
-use Pecee\Http\Request;
+use Kerkenes\Http\Middleware\IMiddleware;
+use Kerkenes\Http\Request;
 
 class RewriteMiddleware implements IMiddleware {
 

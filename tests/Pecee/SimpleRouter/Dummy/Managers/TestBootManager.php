@@ -1,6 +1,6 @@
 <?php
 
-class TestBootManager implements \Pecee\SimpleRouter\IRouterBootManager
+class TestBootManager implements \Kerkenes\SimpleRouter\IRouterBootManager
 {
 
     protected $rewrite;
@@ -13,10 +13,10 @@ class TestBootManager implements \Pecee\SimpleRouter\IRouterBootManager
     /**
      * Called when router loads it's routes
      *
-     * @param \Pecee\SimpleRouter\Router $router
-     * @param \Pecee\Http\Request $request
+     * @param \Kerkenes\SimpleRouter\Router $router
+     * @param \Kerkenes\Http\Request $request
      */
-    public function boot(\Pecee\SimpleRouter\Router $router, \Pecee\Http\Request $request): void
+    public function boot(\Kerkenes\SimpleRouter\Router $router, \Kerkenes\Http\Request $request): void
     {
         foreach ($this->rewrite as $url => $rewrite) {
             // If the current url matches the rewrite url, we use our custom route

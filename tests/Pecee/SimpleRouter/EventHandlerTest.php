@@ -6,8 +6,8 @@ require_once 'Dummy/Handler/ExceptionHandler.php';
 require_once 'Dummy/Security/SilentTokenProvider.php';
 require_once 'Dummy/Managers/TestBootManager.php';
 
-use Pecee\SimpleRouter\Event\EventArgument;
-use Pecee\SimpleRouter\Handlers\EventHandler;
+use Kerkenes\SimpleRouter\Event\EventArgument;
+use Kerkenes\SimpleRouter\Handlers\EventHandler;
 
 class EventHandlerTest extends \PHPUnit\Framework\TestCase
 {
@@ -28,7 +28,7 @@ class EventHandlerTest extends \PHPUnit\Framework\TestCase
         TestRouter::addEventHandler($eventHandler);
 
         // Add rewrite
-        TestRouter::error(function (\Pecee\Http\Request $request, \Exception $error) {
+        TestRouter::error(function (\Kerkenes\Http\Request $request, \Exception $error) {
 
             // Trigger rewrite
             $request->setRewriteUrl('/');
@@ -44,7 +44,7 @@ class EventHandlerTest extends \PHPUnit\Framework\TestCase
         TestRouter::router()->getUrl('home');
 
         // Add csrf-verifier
-        $csrfVerifier = new \Pecee\Http\Middleware\BaseCsrfVerifier();
+        $csrfVerifier = new \Kerkenes\Http\Middleware\BaseCsrfVerifier();
         $csrfVerifier->setTokenProvider(new SilentTokenProvider());
         TestRouter::csrfVerifier($csrfVerifier);
 
@@ -83,7 +83,7 @@ class EventHandlerTest extends \PHPUnit\Framework\TestCase
         $eventHandler = new EventHandler();
         $eventHandler->register(EventHandler::EVENT_ADD_ROUTE, function (EventArgument $arg) use (&$status) {
 
-            if ($arg->route instanceof \Pecee\SimpleRouter\Route\LoadableRoute) {
+            if ($arg->route instanceof \Kerkenes\SimpleRouter\Route\LoadableRoute) {
                 $arg->route->prependUrl('/local-path');
             }
 
@@ -114,10 +114,10 @@ class EventHandlerTest extends \PHPUnit\Framework\TestCase
             if($data->isSubRoute === false) {
 
                 switch (true) {
-                    case $data->route instanceof \Pecee\SimpleRouter\Route\ILoadableRoute:
+                    case $data->route instanceof \Kerkenes\SimpleRouter\Route\ILoadableRoute:
                         $data->route->prependUrl($basePath);
                         break;
-                    case $data->route instanceof \Pecee\SimpleRouter\Route\IGroupRoute:
+                    case $data->route instanceof \Kerkenes\SimpleRouter\Route\IGroupRoute:
                         $data->route->prependPrefix($basePath);
                         break;
 

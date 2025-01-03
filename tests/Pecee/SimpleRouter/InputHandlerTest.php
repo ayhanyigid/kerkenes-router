@@ -1,6 +1,6 @@
 <?php
 
-use Pecee\Http\Input\InputFile;
+use Kerkenes\Http\Input\InputFile;
 
 require_once 'Dummy/DummyMiddleware.php';
 require_once 'Dummy/DummyController.php';
@@ -50,9 +50,9 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->names, $handler->value('names'));
         $this->assertEquals($this->names, $handler->all(['names'])['names']);
         $this->assertEquals($this->day, $handler->value('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->find('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->post('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->find('day', 'post'));
+        $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $handler->find('day'));
+        $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $handler->post('day'));
+        $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $handler->find('day', 'post'));
 
         // Check non-existing and wrong request-type
         $this->assertCount(1, $handler->all(['non-existing']));
@@ -65,12 +65,12 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
 
         $objects = $handler->find('names');
 
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $objects);
+        $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $objects);
         $this->assertCount(4, $objects);
 
-        /* @var $object \Pecee\Http\Input\InputItem */
+        /* @var $object \Kerkenes\Http\Input\InputItem */
         foreach($objects as $i => $object) {
-            $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $object);
+            $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $object);
             $this->assertEquals($this->names[$i], $object->getValue());
         }
 
@@ -96,8 +96,8 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->names, $handler->value('names'));
         $this->assertEquals($this->names, $handler->all(['names'])['names']);
         $this->assertEquals($this->day, $handler->value('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->find('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->get('day'));
+        $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $handler->find('day'));
+        $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $handler->get('day'));
 
         // Check non-existing and wrong request-type
         $this->assertCount(1, $handler->all(['non-existing']));
@@ -109,12 +109,12 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
 
         $objects = $handler->find('names');
 
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $objects);
+        $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $objects);
         $this->assertCount(4, $objects);
 
-        /* @var $object \Pecee\Http\Input\InputItem */
+        /* @var $object \Kerkenes\Http\Input\InputItem */
         foreach($objects as $i => $object) {
-            $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $object);
+            $this->assertInstanceOf(\Kerkenes\Http\Input\InputItem::class, $object);
             $this->assertEquals($this->names[$i], $object->getValue());
         }
 
@@ -132,7 +132,7 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
         $router->getRequest()->setMethod('post');
         $inputHandler = TestRouter::request()->getInputHandler();
 
-        $value = $inputHandler->value('hello', null, \Pecee\Http\Request::$requestTypesPost);
+        $value = $inputHandler->value('hello', null, \Kerkenes\Http\Request::$requestTypesPost);
 
         $this->assertEquals($_POST['hello'], $value);
     }

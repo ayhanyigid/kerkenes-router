@@ -1,8 +1,8 @@
 <?php
 
-use Pecee\Http\Request;
+use Kerkenes\Http\Request;
 
-class DummyLoadableRoute extends Pecee\SimpleRouter\Route\LoadableRoute {
+class DummyLoadableRoute extends Kerkenes\SimpleRouter\Route\LoadableRoute {
 
     public function matchRoute(string $url, Request $request): bool
     {

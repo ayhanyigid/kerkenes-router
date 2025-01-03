@@ -1,6 +1,6 @@
 <?php
 
-class TestRouter extends \Pecee\SimpleRouter\SimpleRouter
+class TestRouter extends \Kerkenes\SimpleRouter\SimpleRouter
 {
 
     public function __construct()
@@ -17,7 +17,7 @@ class TestRouter extends \Pecee\SimpleRouter\SimpleRouter
     {
         $request = static::request();
 
-        $request->setUrl((new \Pecee\Http\Url($testUrl))->setHost('local.unitTest'));
+        $request->setUrl((new \Kerkenes\Http\Url($testUrl))->setHost('local.unitTest'));
         $request->setMethod($testMethod);
 
         static::start();

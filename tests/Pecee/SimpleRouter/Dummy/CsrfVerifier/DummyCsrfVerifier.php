@@ -1,6 +1,6 @@
 <?php
 
-class DummyCsrfVerifier extends \Pecee\Http\Middleware\BaseCsrfVerifier {
+class DummyCsrfVerifier extends \Kerkenes\Http\Middleware\BaseCsrfVerifier {
 
     protected array $except = [
         '/exclude-page',
@@ -11,7 +11,7 @@ class DummyCsrfVerifier extends \Pecee\Http\Middleware\BaseCsrfVerifier {
         '/exclude-all/include-page',
     ];
 
-    public function testSkip(\Pecee\Http\Request $request) {
+    public function testSkip(\Kerkenes\Http\Request $request) {
         return $this->skip($request);
     }
 

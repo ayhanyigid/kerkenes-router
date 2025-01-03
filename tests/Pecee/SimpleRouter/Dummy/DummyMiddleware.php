@@ -1,9 +1,9 @@
 <?php
 require_once 'Exception/MiddlewareLoadedException.php';
 
-use Pecee\Http\Request;
+use Kerkenes\Http\Request;
 
-class DummyMiddleware implements \Pecee\Http\Middleware\IMiddleware
+class DummyMiddleware implements \Kerkenes\Http\Middleware\IMiddleware
 {
 	public function handle(Request $request) : void
 	{
