@@ -1,5 +1,5 @@
 {
-  "name": "pecee/simple-router",
+  "name": "ayhanyigid/simple-router",
   "description": "Simple, fast PHP router that is easy to get integrated and in almost any project. Heavily inspired by the Laravel router.",
   "keywords": [
     "router",
@@ -22,8 +22,8 @@
   },
   "authors": [
     {
-      "name": "Simon Sessingø",
-      "email": "simon.sessingoe@gmail.com"
+      "name": "Ayhan Yigid",
+      "email": "ayhan@yigid.com"
     }
   ],
   "require": {
