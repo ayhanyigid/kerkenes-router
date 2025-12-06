@@ -3,7 +3,7 @@
 namespace Kerkenes\Http\Middleware;
 
 use Kerkenes\Http\Request;
-use Kerkenes\SimpleRouter\Exceptions\HttpException;
+use Kerkenes\KerkenesRouter\Exceptions\HttpException;
 
 abstract class IpRestrictAccess implements IMiddleware
 {

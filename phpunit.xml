@@ -4,8 +4,8 @@
          colors="true"
          bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite name="SimpleRouter Test Suite">
-            <directory>tests/Pecee/SimpleRouter/</directory>
+        <testsuite name="KerkenesRouter Test Suite">
+            <directory>tests/Kerkenes/KerkenesRouter/</directory>
         </testsuite>
     </testsuites>
     <coverage>
