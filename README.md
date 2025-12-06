@@ -148,7 +148,7 @@ You can find the demo-project here: [https://github.com/skipperbent/simple-route
 
 ## Requirements
 
-- PHP 7.1 or greater (version 3.x and below supports PHP 5.5+)
+- PHP 8.5 or greater (version 3.x and below supports PHP 5.5+)
 - PHP JSON extension enabled.
 
 ## Features
