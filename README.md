@@ -119,18 +119,12 @@ ___
 Add the latest version of the kerkenes-router project running this command.
 
 ```
-composer require pecee/kerkenes-router
+composer require ayhanyigid/kerkenes-router
 ```
 
 ## Notes
 
 The goal of this project is to create a router that is more or less 100% compatible with the Laravel documentation, while remaining as simple as possible, and as easy to integrate and change without compromising either speed or complexity. Being lightweight is the #1 priority.
-
-We've included a simple demo project for the router which can be found [here](https://github.com/skipperbent/kerkenes-router-demo). This project should give you a basic understanding of how to setup and use kerkenes-php-router project.
-
-Please note that the demo-project only covers how to integrate the `kerkenes-php-router` in a project without an existing framework. If you are using a framework in your project, the implementation might vary.
-
-You can find the demo-project here: [https://github.com/skipperbent/kerkenes-router-demo](https://github.com/skipperbent/kerkenes-router-demo)
 
 **What we won't cover:**
 
@@ -172,7 +166,7 @@ You can find the demo-project here: [https://github.com/skipperbent/kerkenes-rou
 1. Navigate to your project folder in terminal and run the following command:
 
 ```php
-composer require pecee/kerkenes-router
+composer require ayhanyigid/kerkenes-router
 ```
 
 ### Setting up Nginx
