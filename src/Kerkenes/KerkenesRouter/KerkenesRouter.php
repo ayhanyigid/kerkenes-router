@@ -95,7 +95,7 @@ class KerkenesRouter
 
             if (isset($composerInfo['packages']) === true && is_array($composerInfo['packages']) === true) {
                 foreach ($composerInfo['packages'] as $package) {
-                    if (isset($package['name']) === true && strtolower($package['name']) === 'pecee/simple-router') {
+                    if (isset($package['name']) === true && strtolower($package['name']) === 'pecee/kerkenes-router') {
                         $version = $package['version'];
                         break;
                     }

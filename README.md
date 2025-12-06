@@ -1,8 +1,8 @@
-# simple-router
+# kerkenes-router
 
 Simple, fast and yet powerful PHP router that is easy to get integrated and in any project. Heavily inspired by the way Laravel handles routing, with both simplicity and expand-ability in mind.
 
-With simple-router you can create a new project fast, without depending on a framework.
+With kerkenes-router you can create a new project fast, without depending on a framework.
 
 **It only takes a few lines of code to get started:**
 
@@ -14,7 +14,7 @@ KerkenesRouter::get('/', function() {
 
 ### Support the project
 
-If you like simple-router and wish to see the continued development and maintenance of the project, please consider showing your support by buying me a coffee. Supporters will be listed under the credits section of this documentation.
+If you like kerkenes-router and wish to see the continued development and maintenance of the project, please consider showing your support by buying me a coffee. Supporters will be listed under the credits section of this documentation.
 
 You can donate any amount of your choice by [clicking here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NNX4D2RUSALCN).
 
@@ -118,21 +118,21 @@ ___
 
 # Getting started
 
-Add the latest version of the simple-router project running this command.
+Add the latest version of the kerkenes-router project running this command.
 
 ```
-composer require pecee/simple-router
+composer require pecee/kerkenes-router
 ```
 
 ## Notes
 
 The goal of this project is to create a router that is more or less 100% compatible with the Laravel documentation, while remaining as simple as possible, and as easy to integrate and change without compromising either speed or complexity. Being lightweight is the #1 priority.
 
-We've included a simple demo project for the router which can be found [here](https://github.com/skipperbent/simple-router-demo). This project should give you a basic understanding of how to setup and use simple-php-router project.
+We've included a simple demo project for the router which can be found [here](https://github.com/skipperbent/kerkenes-router-demo). This project should give you a basic understanding of how to setup and use kerkenes-php-router project.
 
-Please note that the demo-project only covers how to integrate the `simple-php-router` in a project without an existing framework. If you are using a framework in your project, the implementation might vary.
+Please note that the demo-project only covers how to integrate the `kerkenes-php-router` in a project without an existing framework. If you are using a framework in your project, the implementation might vary.
 
-You can find the demo-project here: [https://github.com/skipperbent/simple-router-demo](https://github.com/skipperbent/simple-router-demo)
+You can find the demo-project here: [https://github.com/skipperbent/kerkenes-router-demo](https://github.com/skipperbent/kerkenes-router-demo)
 
 **What we won't cover:**
 
@@ -174,7 +174,7 @@ You can find the demo-project here: [https://github.com/skipperbent/simple-route
 1. Navigate to your project folder in terminal and run the following command:
 
 ```php
-composer require pecee/simple-router
+composer require pecee/kerkenes-router
 ```
 
 ### Setting up Nginx
@@ -195,7 +195,7 @@ Nothing special is required for Apache to work. We've include the `.htaccess` fi
 
 #### .htaccess example
 
-Below is an example of an working `.htaccess` file used by simple-php-router.
+Below is an example of an working `.htaccess` file used by kerkenes-php-router.
 
 Simply create a new `.htaccess` file in your projects `public` directory and paste the contents below in your newly created file. This will redirect all requests to your `index.php` file (see Configuration section below).
 
@@ -213,7 +213,7 @@ On IIS you have to add some lines your `web.config` file in the `public` folder 
 
 #### web.config example
 
-Below is an example of an working `web.config` file used by simple-php-router.
+Below is an example of an working `web.config` file used by kerkenes-php-router.
 
 Simply create a new `web.config` file in your projects `public` directory and paste the contents below in your newly created file. This will redirect all requests to your `index.php` file (see Configuration section below). If the `web.config` file already exists, add the `<rewrite>` section inside the `<system.webServer>` branch.
 
@@ -560,7 +560,7 @@ KerkenesRouter::all('/ajax/abc/123', function($param1, $param2) {
 
 ### Custom regex for matching parameters
 
-By default simple-php-router uses the `[\w\-]+` regular expression. It will match `A-Z`, `a-z`, `0-9`, `-` and `_` characters in parameters.
+By default kerkenes-php-router uses the `[\w\-]+` regular expression. It will match `A-Z`, `a-z`, `0-9`, `-` and `_` characters in parameters.
 This decision was made with speed and reliability in mind, as this match will match both letters, number and most of the used symbols on the internet.
 
 However, sometimes it can be necessary to add a custom regular expression to match more advanced characters like foreign letters `æ ø å` etc.
@@ -807,12 +807,12 @@ Any forms posting to `POST`, `PUT` or `DELETE` routes should include the CSRF-to
 
 You can use the `BaseCsrfVerifier` to enable CSRF-validation on all request. If you need to disable verification for specific urls, please refer to the "Custom CSRF-verifier" section below.
 
-By default simple-php-router will use the `CookieTokenProvider` class. This provider will store the security-token in a cookie on the clients machine.
+By default kerkenes-php-router will use the `CookieTokenProvider` class. This provider will store the security-token in a cookie on the clients machine.
 If you want to store the token elsewhere, please refer to the "Creating custom Token Provider" section below.
 
 ## Adding CSRF-verifier
 
-When you've created your CSRF-verifier you need to tell simple-php-router that it should use it. You can do this by adding the following line in your `routes.php` file:
+When you've created your CSRF-verifier you need to tell kerkenes-php-router that it should use it. You can do this by adding the following line in your `routes.php` file:
 
 ```php
 KerkenesRouter::csrfVerifier(new \Demo\Middlewares\CsrfVerifier());
@@ -850,7 +850,7 @@ The example below will post to the current url with a hidden field "`csrf_token`
 
 ## Custom CSRF-verifier
 
-Create a new class and extend the `BaseCsrfVerifier` middleware class provided by default with the simple-php-router library.
+Create a new class and extend the `BaseCsrfVerifier` middleware class provided by default with the kerkenes-php-router library.
 
 Add the property `except` with an array of the urls to the routes you want to exclude/whitelist from the CSRF validation.
 Using ```*``` at the end for the url will match the entire url.
@@ -1230,7 +1230,7 @@ For more available methods please check the `Kerkenes\Http\Url` class.
 
 # Input & parameters
 
-simple-router offers libraries and helpers that makes it easy to manage and manipulate input-parameters like `$_POST`, `$_GET` and `$_FILE`.
+kerkenes-router offers libraries and helpers that makes it easy to manage and manipulate input-parameters like `$_POST`, `$_GET` and `$_FILE`.
 
 ## Using the Input class to manage parameters
 
@@ -1583,7 +1583,7 @@ otherwise we change the url.
 ### Changing current route
 
 Sometimes it can be useful to manipulate the route about to be loaded.
-simple-php-router allows you to easily manipulate and change the routes which are about to be rendered.
+kerkenes-php-router allows you to easily manipulate and change the routes which are about to be rendered.
 All information about the current route is stored in the `\Kerkenes\KerkenesRouter\Router` instance's `loadedRoute` property.
 
 For easy access you can use the shortcut helper function `request()` instead of calling the class directly `\Kerkenes\KerkenesRouter\KerkenesRouter::router()`.
@@ -1679,7 +1679,7 @@ $router->addRoute($route);
 
 ## Custom class loader
 
-You can easily extend simple-router to support custom injection frameworks like php-di by taking advantage of the ability to add your custom class-loader.
+You can easily extend kerkenes-router to support custom injection frameworks like php-di by taking advantage of the ability to add your custom class-loader.
 
 Class-loaders must inherit the `IClassLoader` interface.
 
@@ -1968,7 +1968,7 @@ exit;
 | `csrf_verifier`   | CsrfVerifier class |
 | `log`             | List of debug messages/log from the router. |
 | `router_output`   | The rendered callback output from the router. |
-| `library_version` | The version of simple-php-router you are using. |
+| `library_version` | The version of kerkenes-php-router you are using. |
 | `php_version`     | The version of PHP you are using. |
 | `server_params`   | List of all `$_SERVER` variables/headers. | 
 
@@ -1995,13 +1995,13 @@ $messages = KerkenesRouter::router()->getDebugLog();
 
 ## Reporting a new issue
 
-**Before reporting your issue, make sure that the issue you are experiencing aren't already answered in the [Common errors](#common-errors) section or by searching the [closed issues](https://github.com/skipperbent/simple-php-router/issues?q=is%3Aissue+is%3Aclosed) page on GitHub.**
+**Before reporting your issue, make sure that the issue you are experiencing aren't already answered in the [Common errors](#common-errors) section or by searching the [closed issues](https://github.com/skipperbent/kerkenes-php-router/issues?q=is%3Aissue+is%3Aclosed) page on GitHub.**
 
 To avoid confusion and to help you resolve your issue as quickly as possible, you should provide a detailed explanation of the problem you are experiencing.
 
 ### Procedure for reporting a new issue
 
-1. Go to [this page](https://github.com/skipperbent/simple-php-router/issues/new) to create a new issue.
+1. Go to [this page](https://github.com/skipperbent/kerkenes-php-router/issues/new) to create a new issue.
 2. Add a title that describes your problems in as few words as possible.
 3. Copy and paste the template below in the description of your issue and replace each step with your own information. If the step is not relevant for your issue you can delete it.
 
@@ -2060,7 +2060,7 @@ Remember that a more detailed issue- description and debug-info might suck to wr
 ## Feedback and development
 
 If the library is missing a feature that you need in your project or if you have feedback, we'd love to hear from you. 
-Feel free to leave us feedback by [creating a new issue](https://github.com/skipperbent/simple-php-router/issues/new).
+Feel free to leave us feedback by [creating a new issue](https://github.com/skipperbent/kerkenes-php-router/issues/new).
 
 **Experiencing an issue?**
 
@@ -2085,7 +2085,7 @@ For example when pushing changes to version 3, the pull request should use the `
 
 ## Sites
 
-This is some sites that uses the simple-router project in production.
+This is some sites that uses the kerkenes-router project in production.
 
 - [holla.dk](http://www.holla.dk)
 - [ninjaimg.com](http://ninjaimg.com)
@@ -2096,7 +2096,7 @@ This is some sites that uses the simple-router project in production.
 
 ### The MIT License (MIT)
 
-Copyright (c) 2016 Simon Sessingø / simple-php-router
+Copyright (c) 2016 Simon Sessingø / kerkenes-php-router
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
