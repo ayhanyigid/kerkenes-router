@@ -5,9 +5,9 @@ namespace Kerkenes\Http;
 use Kerkenes\Http\Exceptions\MalformedUrlException;
 use Kerkenes\Http\Input\InputHandler;
 use Kerkenes\Http\Middleware\BaseCsrfVerifier;
-use Kerkenes\SimpleRouter\Route\ILoadableRoute;
-use Kerkenes\SimpleRouter\Route\RouteUrl;
-use Kerkenes\SimpleRouter\SimpleRouter;
+use Kerkenes\KerkenesRouter\Route\ILoadableRoute;
+use Kerkenes\KerkenesRouter\Route\RouteUrl;
+use Kerkenes\KerkenesRouter\KerkenesRouter;
 
 class Request
 {
@@ -429,7 +429,7 @@ class Request
     public function setRewriteRoute(ILoadableRoute $route): self
     {
         $this->hasPendingRewrite = true;
-        $this->rewriteRoute = SimpleRouter::addDefaultNamespace($route);
+        $this->rewriteRoute = KerkenesRouter::addDefaultNamespace($route);
 
         return $this;
     }

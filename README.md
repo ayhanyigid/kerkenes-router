@@ -7,7 +7,7 @@ With simple-router you can create a new project fast, without depending on a fra
 **It only takes a few lines of code to get started:**
 
 ```php
-SimpleRouter::get('/', function() {
+KerkenesRouter::get('/', function() {
     return 'Hello world';
 });
 ```
@@ -148,7 +148,7 @@ You can find the demo-project here: [https://github.com/skipperbent/simple-route
 
 ## Requirements
 
-- PHP 7.1 or greater (version 3.x and below supports PHP 5.5+)
+- PHP 8.5 or greater (version 3.x and below supports PHP 5.5+)
 - PHP JSON extension enabled.
 
 ## Features
@@ -276,15 +276,15 @@ Create a new file, name it `routes.php` and place it in your library folder. Thi
 
 **WARNING: NEVER PLACE YOUR ROUTES.PHP IN YOUR PUBLIC FOLDER!**
 
-In your ```index.php``` require your newly-created ```routes.php``` and call the ```SimpleRouter::start()``` method. This will trigger and do the actual routing of the requests.
+In your ```index.php``` require your newly-created ```routes.php``` and call the ```KerkenesRouter::start()``` method. This will trigger and do the actual routing of the requests.
 
-It's not required, but you can set `SimpleRouter::setDefaultNamespace('\Demo\Controllers');` to prefix all routes with the namespace to your controllers. This will simplify things a bit, as you won't have to specify the namespace for your controllers on each route.
+It's not required, but you can set `KerkenesRouter::setDefaultNamespace('\Demo\Controllers');` to prefix all routes with the namespace to your controllers. This will simplify things a bit, as you won't have to specify the namespace for your controllers on each route.
 
 **This is an example of a basic ```index.php``` file:**
 
 ```php
 <?php
-use Kerkenes\SimpleRouter\SimpleRouter;
+use Kerkenes\KerkenesRouter\KerkenesRouter;
 
 /* Load external routes file */
 require_once 'routes.php';
@@ -294,10 +294,10 @@ require_once 'routes.php';
  * Can be overwritten by using the namespace config option on your routes.
  */
 
-SimpleRouter::setDefaultNamespace('\Demo\Controllers');
+KerkenesRouter::setDefaultNamespace('\Demo\Controllers');
 
 // Start the routing
-SimpleRouter::start();
+KerkenesRouter::start();
 ```
 
 ### Helper functions
@@ -307,7 +307,7 @@ We recommend that you add these helper functions to your project. These will all
 To implement the functions below, simply copy the code to a new file and require the file before initializing the router or copy the `helpers.php` we've included in this library.
 
 ```php
-use Kerkenes\SimpleRouter\SimpleRouter as Router;
+use Kerkenes\KerkenesRouter\KerkenesRouter as Router;
 use Kerkenes\Http\Url;
 use Kerkenes\Http\Response;
 use Kerkenes\Http\Request;
@@ -406,7 +406,7 @@ Remember the ```routes.php``` file you required in your ```index.php```? This fi
 Below is a very basic example of setting up a route. First parameter is the url which the route should match - next parameter is a `Closure` or callback function that will be triggered once the route matches.
 
 ```php
-SimpleRouter::get('/', function() {
+KerkenesRouter::get('/', function() {
     return 'Hello world';
 });
 ```
@@ -416,7 +416,7 @@ SimpleRouter::get('/', function() {
 You can use class hinting to load a class & method like this:
 
 ```php
-SimpleRouter::get('/', [MyClass::class, 'myMethod']);
+KerkenesRouter::get('/', [MyClass::class, 'myMethod']);
 ```
 
 ### Available methods
@@ -424,12 +424,12 @@ SimpleRouter::get('/', [MyClass::class, 'myMethod']);
 Here you can see a list over all available routes:
 
 ```php
-SimpleRouter::get($url, $callback, $settings);
-SimpleRouter::post($url, $callback, $settings);
-SimpleRouter::put($url, $callback, $settings);
-SimpleRouter::patch($url, $callback, $settings);
-SimpleRouter::delete($url, $callback, $settings);
-SimpleRouter::options($url, $callback, $settings);
+KerkenesRouter::get($url, $callback, $settings);
+KerkenesRouter::post($url, $callback, $settings);
+KerkenesRouter::put($url, $callback, $settings);
+KerkenesRouter::patch($url, $callback, $settings);
+KerkenesRouter::delete($url, $callback, $settings);
+KerkenesRouter::options($url, $callback, $settings);
 ```
 
 ### Multiple HTTP-verbs
@@ -437,11 +437,11 @@ SimpleRouter::options($url, $callback, $settings);
 Sometimes you might need to create a route that accepts multiple HTTP-verbs. If you need to match all HTTP-verbs you can use the `any` method.
 
 ```php
-SimpleRouter::match(['get', 'post'], '/', function() {
+KerkenesRouter::match(['get', 'post'], '/', function() {
     // ...
 });
 
-SimpleRouter::any('foo', function() {
+KerkenesRouter::any('foo', function() {
     // ...
 });
 ```
@@ -449,7 +449,7 @@ SimpleRouter::any('foo', function() {
 We've created a simple method which matches `GET` and `POST` which is most commonly used:
 
 ```php
-SimpleRouter::form('foo', function() {
+KerkenesRouter::form('foo', function() {
     // ...
 });
 ```
@@ -461,7 +461,7 @@ SimpleRouter::form('foo', function() {
 You'll properly wondering by know how you parse parameters from your urls. For example, you might want to capture the users id from an url. You can do so by defining route-parameters.
 
 ```php
-SimpleRouter::get('/user/{id}', function ($userId) {
+KerkenesRouter::get('/user/{id}', function ($userId) {
     return 'User with id: ' . $userId;
 });
 ```
@@ -469,7 +469,7 @@ SimpleRouter::get('/user/{id}', function ($userId) {
 You may define as many route parameters as required by your route:
 
 ```php
-SimpleRouter::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
+KerkenesRouter::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
     // ...
 });
 ```
@@ -482,11 +482,11 @@ If your route contain other characters, please see  [Custom regex for matching p
 Occasionally you may need to specify a route parameter, but make the presence of that route parameter optional. You may do so by placing a ? mark after the parameter name. Make sure to give the route's corresponding variable a default value:
 
 ```php
-SimpleRouter::get('/user/{name?}', function ($name = null) {
+KerkenesRouter::get('/user/{name?}', function ($name = null) {
     return $name;
 });
 
-SimpleRouter::get('/user/{name?}', function ($name = 'Simon') {
+KerkenesRouter::get('/user/{name?}', function ($name = 'Simon') {
     return $name;
 });
 ```
@@ -505,7 +505,7 @@ the `setSettings(['includeSlash' => true])` or by using setting `setSlashParamet
 **Example**
 
 ```php
-SimpleRouter::get('/path/{fileOrFolder}', function ($fileOrFolder) {
+KerkenesRouter::get('/path/{fileOrFolder}', function ($fileOrFolder) {
 	return $fileOrFolder;
 })->setSettings(['includeSlash' => true]);
 ```
@@ -518,19 +518,19 @@ SimpleRouter::get('/path/{fileOrFolder}', function ($fileOrFolder) {
 You may constrain the format of your route parameters using the where method on a route instance. The where method accepts the name of the parameter and a regular expression defining how the parameter should be constrained:
 
 ```php
-SimpleRouter::get('/user/{name}', function ($name) {
+KerkenesRouter::get('/user/{name}', function ($name) {
     
     // ... do stuff
     
 })->where([ 'name' => '[A-Za-z]+' ]);
 
-SimpleRouter::get('/user/{id}', function ($id) {
+KerkenesRouter::get('/user/{id}', function ($id) {
     
     // ... do stuff
     
 })->where([ 'id' => '[0-9]+' ]);
 
-SimpleRouter::get('/user/{id}/{name}', function ($id, $name) {
+KerkenesRouter::get('/user/{id}/{name}', function ($id, $name) {
     
     // ... do stuff
     
@@ -552,7 +552,7 @@ The example below is using the following regular expression: `/ajax/([\w]+)/?([0
 Match groups specified in the regex will be passed on as parameters:
 
 ```php
-SimpleRouter::all('/ajax/abc/123', function($param1, $param2) {
+KerkenesRouter::all('/ajax/abc/123', function($param1, $param2) {
 	// param1 = abc
 	// param2 = 123
 })->setMatch('/\/ajax\/([\w]+)\/?([0-9]+)?\/?/is');
@@ -576,15 +576,15 @@ Instead of adding a custom regular expression to all your parameters, you can si
 This example will ensure that all parameters use the `[\w\-\æ\ø\å]+` (`a-z`, `A-Z`, `-`, `_`, `0-9`, `æ`, `ø`, `å`) regular expression when parsing.
 
 ```php
-SimpleRouter::get('/path/{parameter}', 'VideoController@home', ['defaultParameterRegex' => '[\w\-\æ\ø\å]+']);
+KerkenesRouter::get('/path/{parameter}', 'VideoController@home', ['defaultParameterRegex' => '[\w\-\æ\ø\å]+']);
 ```
 
 You can also apply this setting to a group if you need multiple routes to use your custom regular expression when parsing parameters.
 
 ```php
-SimpleRouter::group(['defaultParameterRegex' => '[\w\-\æ\ø\å]+'], function() {
+KerkenesRouter::group(['defaultParameterRegex' => '[\w\-\æ\ø\å]+'], function() {
 
-    SimpleRouter::get('/path/{parameter}', 'VideoController@home');
+    KerkenesRouter::get('/path/{parameter}', 'VideoController@home');
 
 });
 ```
@@ -594,7 +594,7 @@ SimpleRouter::group(['defaultParameterRegex' => '[\w\-\æ\ø\å]+'], function() 
 Named routes allow the convenient generation of URLs or redirects for specific routes. You may specify a name for a route by chaining the name method onto the route definition:
 
 ```php
-SimpleRouter::get('/user/profile', function () {
+KerkenesRouter::get('/user/profile', function () {
     // Your code here
 })->name('profile');
 ```
@@ -602,7 +602,7 @@ SimpleRouter::get('/user/profile', function () {
 You can also specify names for Controller-actions:
 
 ```php
-SimpleRouter::get('/user/profile', 'UserController@profile')->name('profile');
+KerkenesRouter::get('/user/profile', 'UserController@profile')->name('profile');
 ```
 
 ### Generating URLs To Named Routes
@@ -617,7 +617,7 @@ $url = url('profile');
 If the named route defines parameters, you may pass the parameters as the second argument to the `url` function. The given parameters will automatically be inserted into the URL in their correct positions:
 
 ```php
-SimpleRouter::get('/user/{id}/profile', function ($id) {
+KerkenesRouter::get('/user/{id}/profile', function ($id) {
     //
 })->name('profile');
 
@@ -628,19 +628,19 @@ For more information on urls, please see the [Urls](#urls) section.
 
 ## Router groups
 
-Route groups allow you to share route attributes, such as middleware or namespaces, across a large number of routes without needing to define those attributes on each individual route. Shared attributes are specified in an array format as the first parameter to the `SimpleRouter::group` method.
+Route groups allow you to share route attributes, such as middleware or namespaces, across a large number of routes without needing to define those attributes on each individual route. Shared attributes are specified in an array format as the first parameter to the `KerkenesRouter::group` method.
 
 ### Middleware
 
 To assign middleware to all routes within a group, you may use the middleware key in the group attribute array. Middleware are executed in the order they are listed in the array:
 
 ```php
-SimpleRouter::group(['middleware' => \Demo\Middleware\Auth::class], function () {
-    SimpleRouter::get('/', function ()    {
+KerkenesRouter::group(['middleware' => \Demo\Middleware\Auth::class], function () {
+    KerkenesRouter::get('/', function ()    {
         // Uses Auth Middleware
     });
 
-    SimpleRouter::get('/user/profile', function () {
+    KerkenesRouter::get('/user/profile', function () {
         // Uses Auth Middleware
     });
 });
@@ -656,7 +656,7 @@ For example if your route has an absolute callback like `\Demo\Controller\Defaul
 To fix this you can make the callback relative by removing the `\` in the beginning of the callback.
 
 ```php
-SimpleRouter::group(['namespace' => 'Admin'], function () {
+KerkenesRouter::group(['namespace' => 'Admin'], function () {
     // Controllers Within The "App\Http\Controllers\Admin" Namespace
 });
 ```
@@ -667,9 +667,9 @@ Parameters from your previous routes will be injected
 into your routes after any route-required parameters, starting from oldest to newest.
 
 ```php
-SimpleRouter::group(['prefix' => '/lang/{lang}'], function ($language) {
+KerkenesRouter::group(['prefix' => '/lang/{lang}'], function ($language) {
     
-    SimpleRouter::get('/about', function($language) {
+    KerkenesRouter::get('/about', function($language) {
     	
     	// Will match /lang/da/about
     	
@@ -683,8 +683,8 @@ SimpleRouter::group(['prefix' => '/lang/{lang}'], function ($language) {
 Route groups may also be used to handle sub-domain routing. Sub-domains may be assigned route parameters just like route urls, allowing you to capture a portion of the sub-domain for usage in your route or controller. The sub-domain may be specified using the `domain` key on the group attribute array:
 
 ```php
-SimpleRouter::group(['domain' => '{account}.myapp.com'], function () {
-    SimpleRouter::get('/user/{id}', function ($account, $id) {
+KerkenesRouter::group(['domain' => '{account}.myapp.com'], function () {
+    KerkenesRouter::get('/user/{id}', function ($account, $id) {
         //
     });
 });
@@ -695,8 +695,8 @@ SimpleRouter::group(['domain' => '{account}.myapp.com'], function () {
 The `prefix` group attribute may be used to prefix each route in the group with a given url. For example, you may want to prefix all route urls within the group with `admin`:
 
 ```php
-SimpleRouter::group(['prefix' => '/admin'], function () {
-    SimpleRouter::get('/users', function ()    {
+KerkenesRouter::group(['prefix' => '/admin'], function () {
+    KerkenesRouter::get('/users', function ()    {
         // Matches The "/admin/users" URL
     });
 });
@@ -705,8 +705,8 @@ SimpleRouter::group(['prefix' => '/admin'], function () {
 You can also use parameters in your groups:
 
 ```php
-SimpleRouter::group(['prefix' => '/lang/{language}'], function ($language) {
-    SimpleRouter::get('/users', function ($language)    {
+KerkenesRouter::group(['prefix' => '/lang/{language}'], function ($language) {
+    KerkenesRouter::get('/users', function ($language)    {
         // Matches The "/lang/da/users" URL
     });
 });
@@ -726,7 +726,7 @@ This can cause `url()` not to find urls for the routes added within before the p
 **Example:**
 
 ```php
-SimpleRouter::partialGroup('/plugin/{name}', function ($plugin) {
+KerkenesRouter::partialGroup('/plugin/{name}', function ($plugin) {
 
     // Add routes from plugin
 
@@ -746,7 +746,7 @@ HTML forms do not support `PUT`, `PATCH` or `DELETE` actions. So, when defining 
 You can access information about the current route loaded by using the following method:
 
 ```php
-SimpleRouter::request()->getLoadedRoute();
+KerkenesRouter::request()->getLoadedRoute();
 request()->getLoadedRoute();
 ```
 
@@ -756,27 +756,27 @@ You can find many more examples in the `routes.php` example-file below:
 
 ```php
 <?php
-use Kerkenes\SimpleRouter\SimpleRouter;
+use Kerkenes\KerkenesRouter\KerkenesRouter;
 
 /* Adding custom csrfVerifier here */
-SimpleRouter::csrfVerifier(new \Demo\Middlewares\CsrfVerifier());
+KerkenesRouter::csrfVerifier(new \Demo\Middlewares\CsrfVerifier());
 
-SimpleRouter::group(['middleware' => \Demo\Middlewares\Site::class, 'exceptionHandler' => \Demo\Handlers\CustomExceptionHandler::class], function() {
+KerkenesRouter::group(['middleware' => \Demo\Middlewares\Site::class, 'exceptionHandler' => \Demo\Handlers\CustomExceptionHandler::class], function() {
 
 
-    SimpleRouter::get('/answers/{id}', 'ControllerAnswers@show', ['where' => ['id' => '[0-9]+']]);
+    KerkenesRouter::get('/answers/{id}', 'ControllerAnswers@show', ['where' => ['id' => '[0-9]+']]);
 
 	/**
      * Class hinting is supported too
      */
      
-     SimpleRouter::get('/answers/{id}', [ControllerAnswers::class, 'show'], ['where' => ['id' => '[0-9]+']]);
+     KerkenesRouter::get('/answers/{id}', [ControllerAnswers::class, 'show'], ['where' => ['id' => '[0-9]+']]);
 
     /**
      * Restful resource (see IRestController interface for available methods)
      */
 
-    SimpleRouter::resource('/rest', ControllerResource::class);
+    KerkenesRouter::resource('/rest', ControllerResource::class);
 
 
     /**
@@ -792,11 +792,11 @@ SimpleRouter::group(['middleware' => \Demo\Middlewares\Site::class, 'exceptionHa
      * etc.
      */
 
-    SimpleRouter::controller('/animals', ControllerAnimals::class);
+    KerkenesRouter::controller('/animals', ControllerAnimals::class);
 
 });
 
-SimpleRouter::get('/page/404', 'ControllerPage@notFound', ['as' => 'page.notfound']);
+KerkenesRouter::get('/page/404', 'ControllerPage@notFound', ['as' => 'page.notfound']);
 ```
 
 ---
@@ -815,7 +815,7 @@ If you want to store the token elsewhere, please refer to the "Creating custom T
 When you've created your CSRF-verifier you need to tell simple-php-router that it should use it. You can do this by adding the following line in your `routes.php` file:
 
 ```php
-SimpleRouter::csrfVerifier(new \Demo\Middlewares\CsrfVerifier());
+KerkenesRouter::csrfVerifier(new \Demo\Middlewares\CsrfVerifier());
 ```
 
 ## Getting CSRF-token
@@ -831,7 +831,7 @@ csrf_token();
 You can also get the token directly:
 
 ```php
-return SimpleRouter::router()->getCsrfVerifier()->getTokenProvider()->getToken();
+return KerkenesRouter::router()->getCsrfVerifier()->getTokenProvider()->getToken();
 ```
 
 The default name/key for the input-field is `csrf_token` and is defined in the `POST_KEY` constant in the `BaseCsrfVerifier` class.
@@ -920,7 +920,7 @@ Next you need to set your custom `ITokenProvider` implementation on your `BaseCs
 $verifier = new \Demo\Middlewares\CsrfVerifier();
 $verifier->setTokenProvider(new SessionTokenProvider());
 
-SimpleRouter::csrfVerifier($verifier);
+KerkenesRouter::csrfVerifier($verifier);
 ```
 
 ---
@@ -962,7 +962,7 @@ ExceptionHandler are classes that handles all exceptions. ExceptionsHandlers mus
 
 ## Handling 404, 403 and other errors
 
-If you simply want to catch a 404 (page not found) etc. you can use the `SimpleRouter::error($callback)` static helper method.
+If you simply want to catch a 404 (page not found) etc. you can use the `KerkenesRouter::error($callback)` static helper method.
 
 This will add a callback method which is fired whenever an error occurs on all routes.
 
@@ -970,10 +970,10 @@ The basic example below simply redirect the page to `/not-found` if an `NotFound
 The code should be placed in the file that contains your routes.
 
 ```php
-SimpleRouter::get('/not-found', 'PageController@notFound');
-SimpleRouter::get('/forbidden', 'PageController@notFound');
+KerkenesRouter::get('/not-found', 'PageController@notFound');
+KerkenesRouter::get('/forbidden', 'PageController@notFound');
 
-SimpleRouter::error(function(Request $request, \Exception $exception) {
+KerkenesRouter::error(function(Request $request, \Exception $exception) {
 
     switch($exception->getCode()) {
         // Page not found
@@ -998,7 +998,7 @@ $request->setRewriteCallback('ErrorController@notFound');
 If you will set the correct status for the browser error use:
 
 ```php
-SimpleRouter::response()->httpCode(404);
+KerkenesRouter::response()->httpCode(404);
 ```
 
 ## Using custom exception handlers
@@ -1009,8 +1009,8 @@ This is a basic example of an ExceptionHandler implementation (please see "[Easi
 namespace Demo\Handlers;
 
 use Kerkenes\Http\Request;
-use Kerkenes\SimpleRouter\Handlers\IExceptionHandler;
-use Kerkenes\SimpleRouter\Exceptions\NotFoundHttpException;
+use Kerkenes\KerkenesRouter\Handlers\IExceptionHandler;
+use Kerkenes\KerkenesRouter\Exceptions\NotFoundHttpException;
 
 class CustomExceptionHandler implements IExceptionHandler
 {
@@ -1059,7 +1059,7 @@ You can add your custom exception-handler class to your group by using the `exce
 `exceptionHandler` can be either class-name or array of class-names.
 
 ```php
-SimpleRouter::group(['exceptionHandler' => \Demo\Handlers\CustomExceptionHandler::class], function() {
+KerkenesRouter::group(['exceptionHandler' => \Demo\Handlers\CustomExceptionHandler::class], function() {
 
     // Your routes here
 
@@ -1073,15 +1073,15 @@ By default the router will merge exception-handlers to any handlers provided by 
 If you want your groups exception handler to be executed independently, you can add the `mergeExceptionHandlers` attribute and set it to `false`.
 
 ```php
-SimpleRouter::group(['prefix' => '/', 'exceptionHandler' => \Demo\Handlers\FirstExceptionHandler::class, 'mergeExceptionHandlers' => false], function() {
+KerkenesRouter::group(['prefix' => '/', 'exceptionHandler' => \Demo\Handlers\FirstExceptionHandler::class, 'mergeExceptionHandlers' => false], function() {
 
-	SimpleRouter::group(['prefix' => '/admin', 'exceptionHandler' => \Demo\Handlers\SecondExceptionHandler::class], function() {
+	KerkenesRouter::group(['prefix' => '/admin', 'exceptionHandler' => \Demo\Handlers\SecondExceptionHandler::class], function() {
 	
 		// Both SecondExceptionHandler and FirstExceptionHandler will trigger (in that order).
 	
 	});
 	
-	SimpleRouter::group(['prefix' => '/user', 'exceptionHandler' => \Demo\Handlers\SecondExceptionHandler::class, 'mergeExceptionHandlers' => false], function() {
+	KerkenesRouter::group(['prefix' => '/user', 'exceptionHandler' => \Demo\Handlers\SecondExceptionHandler::class, 'mergeExceptionHandlers' => false], function() {
 	
 		// Only SecondExceptionHandler will trigger.
 	
@@ -1116,7 +1116,7 @@ url();
 ### Get by name (single route)
 
 ```php
-SimpleRouter::get('/product-view/{id}', 'ProductsController@show', ['as' => 'product']);
+KerkenesRouter::get('/product-view/{id}', 'ProductsController@show', ['as' => 'product']);
 
 # output: /product-view/22/?category=shoes
 url('product', ['id' => 22], ['category' => 'shoes']);
@@ -1128,7 +1128,7 @@ url('product', null, ['category' => 'shoes']);
 ### Get by name (controller route)
 
 ```php
-SimpleRouter::controller('/images', ImagesController::class, ['as' => 'picture']);
+KerkenesRouter::controller('/images', ImagesController::class, ['as' => 'picture']);
 
 # output: /images/view/?category=shows
 url('picture@getView', null, ['category' => 'shoes']);
@@ -1143,8 +1143,8 @@ url('picture', 'view');
 ### Get by class
 
 ```php
-SimpleRouter::get('/product-view/{id}', 'ProductsController@show', ['as' => 'product']);
-SimpleRouter::controller('/images', 'ImagesController');
+KerkenesRouter::get('/product-view/{id}', 'ProductsController@show', ['as' => 'product']);
+KerkenesRouter::controller('/images', 'ImagesController');
 
 # output: /product-view/22/?category=shoes
 url('ProductsController@show', ['id' => 22], ['category' => 'shoes']);
@@ -1156,7 +1156,7 @@ url('ImagesController@getImage', null, ['id' => 22]);
 ### Using custom names for methods on a controller/resource route
 
 ```php
-SimpleRouter::controller('gadgets', GadgetsController::class, ['names' => ['getIphoneInfo' => 'iphone']]);
+KerkenesRouter::controller('gadgets', GadgetsController::class, ['names' => ['getIphoneInfo' => 'iphone']]);
 
 url('gadgets.iphone');
 
@@ -1167,7 +1167,7 @@ url('gadgets.iphone');
 ### Getting REST/resource controller urls
 
 ```php
-SimpleRouter::resource('/phones', PhonesController::class);
+KerkenesRouter::resource('/phones', PhonesController::class);
 
 # output: /phones/
 url('phones');
@@ -1387,7 +1387,7 @@ All event callbacks will retrieve a `EventArgument` object as parameter. This ob
 | `EVENT_RENDER_BOOTMANAGER`  | `bootmanagers`<br>`bootmanager` | Fires before a boot-manager is rendered. |
 | `EVENT_LOAD_ROUTES`         | `routes` | Fires when the router is about to load all routes. |
 | `EVENT_FIND_ROUTE`          | `name` | Fires whenever the `findRoute` method is called within the `Router`. This usually happens when the router tries to find routes that contains a certain url, usually after the `EventHandler::EVENT_GET_URL` event. |
-| `EVENT_GET_URL`             | `name`<br>`parameters`<br>`getParams` | Fires whenever the `SimpleRouter::getUrl` method or `url`-helper function is called and the router tries to find the route. |
+| `EVENT_GET_URL`             | `name`<br>`parameters`<br>`getParams` | Fires whenever the `KerkenesRouter::getUrl` method or `url`-helper function is called and the router tries to find the route. |
 | `EVENT_MATCH_ROUTE`         | `route` | Fires when a route is matched and valid (correct request-type etc). and before the route is rendered. |
 | `EVENT_RENDER_ROUTE`        | `route` | Fires before a route is rendered. |
 | `EVENT_LOAD_EXCEPTIONS`     | `exception`<br>`exceptionHandlers` | Fires when the router is loading exception-handlers. |
@@ -1400,13 +1400,13 @@ All event callbacks will retrieve a `EventArgument` object as parameter. This ob
 To register a new event you need to create a new instance of the `EventHandler` object. On this object you can add as many callbacks as you like by calling the `registerEvent` method.
 
 When you've registered events, make sure to add it to the router by calling 
-`SimpleRouter::addEventHandler()`. We recommend that you add your event-handlers within your `routes.php`.
+`KerkenesRouter::addEventHandler()`. We recommend that you add your event-handlers within your `routes.php`.
 
 **Example:**
 
 ```php
-use Kerkenes\SimpleRouter\Handlers\EventHandler;
-use Kerkenes\SimpleRouter\Event\EventArgument;
+use Kerkenes\KerkenesRouter\Handlers\EventHandler;
+use Kerkenes\KerkenesRouter\Event\EventArgument;
 
 // --- your routes goes here ---
 
@@ -1422,7 +1422,7 @@ $eventHandler->register(EventHandler::EVENT_RENDER_ROUTE, function(EventArgument
     
 });
 
-SimpleRouter::addEventHandler($eventHandler);
+KerkenesRouter::addEventHandler($eventHandler);
 
 ```
 
@@ -1430,7 +1430,7 @@ SimpleRouter::addEventHandler($eventHandler);
 
 `EventHandler` is the class that manages events and must inherit from the `IEventHandler` interface. The handler knows how to handle events for the given handler-type. 
 
-Most of the time the basic `\Kerkenes\SimpleRouter\Handler\EventHandler` class will be more than enough for most people as you simply register an event which fires when triggered.
+Most of the time the basic `\Kerkenes\KerkenesRouter\Handler\EventHandler` class will be more than enough for most people as you simply register an event which fires when triggered.
 
 Let's go over how to create your very own event-handler class.
 
@@ -1439,8 +1439,8 @@ Below is a basic example of a custom event-handler called `DatabaseDebugHandler`
 ```php
 namespace Demo\Handlers;
 
-use Kerkenes\SimpleRouter\Event\EventArgument;
-use Kerkenes\SimpleRouter\Router;
+use Kerkenes\KerkenesRouter\Event\EventArgument;
+use Kerkenes\KerkenesRouter\Router;
 
 class DatabaseDebugHandler implements IEventHandler
 {
@@ -1505,7 +1505,7 @@ class DatabaseDebugHandler implements IEventHandler
 
 ## Multiple route rendering
 
-If you need multiple routes to be executed on the same url, you can enable this feature by setting `SimpleRouter::enableMultiRouteRendering(true)`
+If you need multiple routes to be executed on the same url, you can enable this feature by setting `KerkenesRouter::enableMultiRouteRendering(true)`
 in your `routes.php` file.
 
 This is most commonly used in advanced cases, for example in CMS systems where multiple routes needs to be rendered.
@@ -1571,7 +1571,7 @@ $eventHandler->register(EventHandler::EVENT_ADD_ROUTE, function(EventArgument $e
 	
 });
 
-SimpleRouter::addEventHandler($eventHandler);
+KerkenesRouter::addEventHandler($eventHandler);
 ```
 
 In the example shown above, we create a new `EVENT_ADD_ROUTE` event that triggers, when a new route is added.
@@ -1584,9 +1584,9 @@ otherwise we change the url.
 
 Sometimes it can be useful to manipulate the route about to be loaded.
 simple-php-router allows you to easily manipulate and change the routes which are about to be rendered.
-All information about the current route is stored in the `\Kerkenes\SimpleRouter\Router` instance's `loadedRoute` property.
+All information about the current route is stored in the `\Kerkenes\KerkenesRouter\Router` instance's `loadedRoute` property.
 
-For easy access you can use the shortcut helper function `request()` instead of calling the class directly `\Kerkenes\SimpleRouter\SimpleRouter::router()`.
+For easy access you can use the shortcut helper function `request()` instead of calling the class directly `\Kerkenes\KerkenesRouter\KerkenesRouter::router()`.
 
 
 ```php
@@ -1605,8 +1605,8 @@ To interfere with the router, we create a class that implements the ```IRouterBo
 
 ```php
 use Kerkenes\Http\Request;
-use Kerkenes\SimpleRouter\IRouterBootManager;
-use Kerkenes\SimpleRouter\Router;
+use Kerkenes\KerkenesRouter\IRouterBootManager;
+use Kerkenes\KerkenesRouter\Router;
 
 class CustomRouterRules implement IRouterBootManager 
 {
@@ -1614,10 +1614,10 @@ class CustomRouterRules implement IRouterBootManager
     /**
      * Called when router is booting and before the routes is loaded.
      *
-     * @param \Kerkenes\SimpleRouter\Router $router
+     * @param \Kerkenes\KerkenesRouter\Router $router
      * @param \Kerkenes\Http\Request $request
      */
-    public function boot(\Kerkenes\SimpleRouter\Router $router, \Kerkenes\Http\Request $request): void
+    public function boot(\Kerkenes\KerkenesRouter\Router $router, \Kerkenes\Http\Request $request): void
     {
 
         $rewriteRules = [
@@ -1648,17 +1648,17 @@ By doing this the route will now load the url ```/article/view/1``` instead of `
 The last thing we need to do, is to add our custom boot-manager to the ```routes.php``` file. You can create as many bootmanagers as you like and easily add them in your ```routes.php``` file.
 
 ```php
-SimpleRouter::addBootManager(new CustomRouterRules());
+KerkenesRouter::addBootManager(new CustomRouterRules());
 ```
 
 ### Adding routes manually
 
-The ```SimpleRouter``` class referenced in the previous example, is just a simple helper class that knows how to communicate with the ```Router``` class.
+The ```KerkenesRouter``` class referenced in the previous example, is just a simple helper class that knows how to communicate with the ```Router``` class.
 If you are up for a challenge, want the full control or simply just want to create your own ```Router``` helper class, this example is for you.
 
 ```php
-use \Kerkenes\SimpleRouter\Router;
-use \Kerkenes\SimpleRouter\Route\RouteUrl;
+use \Kerkenes\KerkenesRouter\Router;
+use \Kerkenes\KerkenesRouter\Route\RouteUrl;
 
 /* Create new Router instance */
 $router = new Router();
@@ -1734,7 +1734,7 @@ class MyCustomClassLoader implements IClassLoader
 Next, we need to configure our `routes.php` so the router uses our `MyCustomClassLoader` class for loading classes. This can be done by adding the following line to your `routes.php` file.
 
 ```php
-SimpleRouter::setCustomClassLoader(new MyCustomClassLoader());
+KerkenesRouter::setCustomClassLoader(new MyCustomClassLoader());
 ```
 
 ### Integrating with php-di
@@ -1742,7 +1742,7 @@ SimpleRouter::setCustomClassLoader(new MyCustomClassLoader());
 php-di support was discontinued by version 4.3, however you can easily add it again by creating your own class-loader like the example below:
 
 ```php
-use Kerkenes\SimpleRouter\Exceptions\ClassNotFoundHttpException;
+use Kerkenes\KerkenesRouter\Exceptions\ClassNotFoundHttpException;
 
 class MyCustomClassLoader implements IClassLoader
 {
@@ -1819,14 +1819,14 @@ This section contains advanced tips & tricks on extending the usage for paramete
 
 This is a simple example of an integration into a framework.
 
-The framework has it's own ```Router``` class which inherits from the ```SimpleRouter``` class. This allows the framework to add custom functionality like loading a custom `routes.php` file or add debugging information etc.
+The framework has it's own ```Router``` class which inherits from the ```KerkenesRouter``` class. This allows the framework to add custom functionality like loading a custom `routes.php` file or add debugging information etc.
 
 ```php
 namespace Demo;
 
-use Kerkenes\SimpleRouter\SimpleRouter;
+use Kerkenes\KerkenesRouter\KerkenesRouter;
 
-class Router extends SimpleRouter {
+class Router extends KerkenesRouter {
 
     public static function start() {
 
@@ -1950,7 +1950,7 @@ The example below will start the routing an return array with debugging-informat
 **Example:**
 
 ```php
-$debugInfo = SimpleRouter::startDebug();
+$debugInfo = KerkenesRouter::startDebug();
 echo sprintf('<pre>%s</pre>', var_export($debugInfo));
 exit;
 ```
@@ -1981,8 +1981,8 @@ You have to enable debugging BEFORE starting the routing.
 **Example:**
 
 ```php
-SimpleRouter::router()->setDebugEnabled(true);
-SimpleRouter::start();
+KerkenesRouter::router()->setDebugEnabled(true);
+KerkenesRouter::start();
 ```
 
 When the routing is complete, you can get the debug-log by calling the `getDebugLog()` on the `Router` instance. This will return an `array` of log-messages each containing execution time, trace info and debug-message.
@@ -1990,7 +1990,7 @@ When the routing is complete, you can get the debug-log by calling the `getDebug
 **Example:**
 
 ```php
-$messages = SimpleRouter::router()->getDebugLog();
+$messages = KerkenesRouter::router()->getDebugLog();
 ```
 
 ## Reporting a new issue
@@ -2021,7 +2021,7 @@ The library fails to render the route `/user/æsel` which contains one parameter
 1. Add the following route:
 
 ```php
-SimpleRouter::get('/user/{name}', 'UserController@show')->where(['name' => '[\w]+']);
+KerkenesRouter::get('/user/{name}', 'UserController@show')->where(['name' => '[\w]+']);
 ```
 
 2. Navigate to `/user/æsel` in browser.
@@ -2033,7 +2033,7 @@ SimpleRouter::get('/user/{name}', 'UserController@show')->where(['name' => '[\w]
 *Route:*
 
 ```php
-SimpleRouter::get('/user/{name}', 'UserController@show')->where(['name' => '[\w]+']);
+KerkenesRouter::get('/user/{name}', 'UserController@show')->where(['name' => '[\w]+']);
 ```
 
 *Callback:*

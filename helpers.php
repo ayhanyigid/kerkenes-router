@@ -1,6 +1,6 @@
 <?php
 
-use Kerkenes\SimpleRouter\SimpleRouter as Router;
+use Kerkenes\KerkenesRouter\KerkenesRouter as Router;
 use Kerkenes\Http\Url;
 use Kerkenes\Http\Response;
 use Kerkenes\Http\Request;

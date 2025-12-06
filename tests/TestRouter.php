@@ -1,6 +1,6 @@
 <?php
 
-class TestRouter extends \Kerkenes\SimpleRouter\SimpleRouter
+class TestRouter extends \Kerkenes\KerkenesRouter\KerkenesRouter
 {
 
     public function __construct()
