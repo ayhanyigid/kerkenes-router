@@ -16,8 +16,6 @@ KerkenesRouter::get('/', function() {
 
 If you like kerkenes-router and wish to see the continued development and maintenance of the project, please consider showing your support by buying me a coffee. Supporters will be listed under the credits section of this documentation.
 
-You can donate any amount of your choice by [clicking here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NNX4D2RUSALCN).
-
 ## Table of Contents
 
 - [Getting started](#getting-started)
